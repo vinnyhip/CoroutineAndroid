@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CoroutineAndroid</string>
+    <string name="button_text">Click Me</string>
+</resources>
