@@ -14,3 +14,5 @@ Simulating api requests with Android Coroutines
   * Default for massive computation. Ex: A big list filtering
 * Use the function __withContext__ to change between contexts to run a part of the code inside a coroutine 
 * You can chain network requests inside a coroutine
+
+Signing commits/GPG
