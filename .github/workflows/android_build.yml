@@ -22,5 +22,6 @@ jobs:
         run: ./gradlew assembleRelease
       - name: Releasing using Hub
         uses: kyze8439690/action-release-releaseapk@1.0.0
-          with: ${{ secrets.TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           APP_FOLDER: app
