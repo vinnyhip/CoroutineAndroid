@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
@@ -19,10 +19,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleRelease
       - name: Releasing using Hub
-        uses: ShaunLWM/action-release-debugapk@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        uses: kyze8439690/action-release-releaseapk@1.0.0
+          with: ${{ secrets.TOKEN }}
           APP_FOLDER: app
-          RELEASE_TITLE: New Build
