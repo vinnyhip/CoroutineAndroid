@@ -1,6 +1,9 @@
 name: Build & Publish Debug APK
 
-on: workflow_dispatch
+on:
+  push:
+    tags:
+      - v0.*
 
 jobs:
   build:
@@ -49,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release v${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
           
@@ -72,7 +75,3 @@ jobs:
           asset_path: ${{ env.ARTIFACT_PATHNAME_APK }}
           asset_name: ${{ env.ARTIFACT_NAME_APK }}
           asset_content_type: application/zip
-      
-      - name: Debug
-        run: |
-          ls ${{ env.SIGNED_RELEASE_FILE }}
