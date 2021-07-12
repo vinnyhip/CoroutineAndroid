@@ -17,7 +17,6 @@ jobs:
         with:
           java-version: 1.8
 
-      ## Build all our Build Types at once ##
       - name: Build all artifacts
         id: buildAllApks
         uses: eskatos/gradle-command-action@v1.3.3
@@ -28,7 +27,6 @@ jobs:
           configuration-cache-enabled: true
           arguments: assembleRelease
 
-      ## Sign our artifact##
       - name: Sign artifact
         id: signArtifact
         uses: r0adkll/sign-android-release@v1
@@ -38,6 +36,7 @@ jobs:
           signingKeyBase64: ${{ secrets.KEYSTORE }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
+          signedReleaseFile: app/build/outputs/apk/release/coroutineAndroid.apk
 
       - name: Upload our APK
         uses: actions/upload-artifact@v2
@@ -59,7 +58,7 @@ jobs:
       - name: Save name of our Artifact
         id: set-result-artifact
         run: |
-          ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/apk/release/*.apk | head -n 1)
+          ARTIFACT_PATHNAME_APK=$(ls ${{ env.SIGNED_RELEASE_FILE }} | head -n 1)
           ARTIFACT_NAME_APK=$(basename $ARTIFACT_PATHNAME_APK)
           echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
           echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
