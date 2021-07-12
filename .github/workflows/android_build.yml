@@ -40,5 +40,5 @@ jobs:
         uses: actions/upload-artifact@v2.2.0
         with:
           name: Release artifact
-          path: app/release/app-release.apk
+          path: app/release/app-artifact-*.apk
 
