@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.0
         with:
           name: Release artifact
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          path: ${{steps.signArtifact.outputs.signedReleaseFile}}
       
       - name: Debug
         run: |
