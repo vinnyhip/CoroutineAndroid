@@ -72,5 +72,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ env.ARTIFACT_PATHNAME_APK }}
-          asset_name: ${{ env.ARTIFACT_NAME_APK }}
+          asset_name: "CoroutineAndroid"
           asset_content_type: application/zip
