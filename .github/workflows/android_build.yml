@@ -41,4 +41,10 @@ jobs:
         with:
           name: Release artifact
           path: app/build/outputs/apk/ourbuildtype/release/app-artifact-*.apk
+      
+      - name: Debug
+        run: |
+          ls "app"
+          ls "app/release"
+          ls "app/build"
 
